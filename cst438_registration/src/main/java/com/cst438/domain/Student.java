@@ -20,6 +20,11 @@ public class Student {
 		super();
 	}
 	
+	public Student(String name, String email) {
+		this.name = name;
+		this.email = email;
+	}
+	
 	public int getStudent_id() {
 		return student_id;
 	}
