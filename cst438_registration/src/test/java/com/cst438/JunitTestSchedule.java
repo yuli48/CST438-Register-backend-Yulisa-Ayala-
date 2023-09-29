@@ -21,6 +21,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * Example of using Junit 
  * Mockmvc is used to test a simulated REST call to the RestController
  */
+
 @SpringBootTest
 @AutoConfigureMockMvc
 public class JunitTestSchedule {

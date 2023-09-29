@@ -43,7 +43,7 @@ public class ScheduleController {
 	@GetMapping("/schedule")
 	public ScheduleDTO[] getSchedule( @RequestParam("year") int year, @RequestParam("semester") String semester ) {
 		System.out.println("/schedule called.");
-		String student_email = "test@csumb.edu";   // student's email 
+		String student_email = "test@csumb.edu";
 		
 		Student student = studentRepository.findByEmail(student_email);
 		if (student != null) {
@@ -52,7 +52,7 @@ public class ScheduleController {
 			ScheduleDTO[] sched = createSchedule(year, semester, student, enrollments);
 			return sched;
 		} else {
-			return new ScheduleDTO[0];   // return empty schedule for unknown student.
+			return new ScheduleDTO[0]; 
 		}
 	}
 	/*
@@ -61,20 +61,17 @@ public class ScheduleController {
 	@PostMapping("/schedule/course/{id}")
 	@Transactional
 	public ScheduleDTO addCourse( @PathVariable int id  ) { 
-		String student_email = "test@csumb.edu";   // student's email 
+		String student_email = "test@csumb.edu";
 		Student student = studentRepository.findByEmail(student_email);
 		Course course  = courseRepository.findById(id).orElse(null);
-		// student.status
-		// = 0  ok to register.  != 0 registration is on hold.		
+		
 		if (student!= null && course!=null && student.getStatusCode()==0) {
-			// TODO check that today's date is not past add deadline for the course.
 			Enrollment enrollment = new Enrollment();
 			enrollment.setStudent(student);
 			enrollment.setCourse(course);
 			enrollment.setYear(course.getYear());
 			enrollment.setSemester(course.getSemester());
 			enrollmentRepository.save(enrollment);
-			// notify grade book of new enrollment event
 			gradebookService.enrollStudent(student_email, student.getName(), course.getCourse_id());
 			ScheduleDTO result = createSchedule(enrollment);
 			return result;
