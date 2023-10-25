@@ -1,0 +1,22 @@
+{"properties": [
+  {
+    "name": "gradebook.url",
+    "type": "java.lang.String",
+    "description": "A description for 'gradebook.url'"
+  },
+  {
+    "name": "gradebook.service",
+    "type": "java.lang.String",
+    "description": "A description for 'gradebook.service'"
+  },
+  {
+    "name": "security.basic.enable",
+    "type": "java.lang.String",
+    "description": "A description for 'security.basic.enable'"
+  },
+  {
+    "name": "security.ignored",
+    "type": "java.lang.String",
+    "description": "A description for 'security.ignored'"
+  }
+]}
